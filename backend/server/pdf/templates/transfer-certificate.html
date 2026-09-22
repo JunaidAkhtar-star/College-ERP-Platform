@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Transfer Certificate — {{institutionShortCode}}</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Times New Roman', serif; font-size: 13px; color: #111; background: #fff; }
+  .page { width: 210mm; min-height: 297mm; padding: 18mm 20mm; }
+  .outer-border { position: fixed; top: 8mm; left: 8mm; right: 8mm; bottom: 8mm; border: 3px solid #880000; pointer-events: none; }
+  .inner-border { position: fixed; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm; border: 1px solid #cc4444; pointer-events: none; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-35deg); font-size: 90px; font-weight: 900; color: rgba(136,0,0,0.04); white-space: nowrap; pointer-events: none; }
+  .header { text-align: center; border-bottom: 2px solid #880000; padding-bottom: 14px; margin-bottom: 16px; }
+  .header .inst-name { font-size: 22px; font-weight: 700; color: #880000; letter-spacing: 1px; }
+  .header .inst-sub { font-size: 11px; color: #555; margin: 3px 0; }
+  .cert-title { text-align: center; margin: 18px 0; }
+  .cert-title h2 { font-size: 20px; font-weight: 700; color: #880000; letter-spacing: 2px; text-decoration: underline; text-underline-offset: 5px; }
+  .cert-title .cert-no { font-size: 11px; color: #777; margin-top: 5px; }
+  .tc-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  .tc-table td { padding: 8px 14px; font-size: 12.5px; border: 1px solid #ddd; }
+  .tc-table td:first-child { background: #fff5f5; font-weight: 600; width: 45%; color: #444; }
+  .tc-table td:last-child { font-weight: 600; color: #111; }
+  .sl-col { width: 40px; text-align: center; background: #f0f0f0 !important; color: #666 !important; }
+  .cert-body { font-size: 13px; line-height: 1.9; text-align: justify; margin: 16px 0; }
+  .note-box { background: #fff5f5; border: 1px solid #ef9a9a; border-radius: 4px; padding: 10px 14px; margin: 14px 0; }
+  .note-box p { font-size: 11.5px; color: #880000; }
+  .cert-footer { margin-top: 36px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .cert-footer .date-place p { font-size: 12px; margin: 4px 0; }
+  .cert-footer .authority { text-align: center; }
+  .cert-footer .authority .sig-line { width: 160px; border-top: 1px solid #333; margin: 0 auto 6px; }
+  .cert-footer .authority p { font-size: 12px; font-weight: 600; }
+  .cert-footer .authority .seal-box { width: 75px; height: 75px; border: 1px dashed #999; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #bbb; margin: 0 auto 8px; }
+  .qr-area { text-align: center; }
+  .qr-area img { width: 60px; }
+  .qr-area p { font-size: 9px; color: #aaa; margin-top: 3px; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<div class="outer-border"></div>
+<div class="inner-border"></div>
+<div class="watermark">{{upper institutionShortCode}}</div>
+
+<div class="page">
+
+  <div class="header">
+    <div class="inst-name">{{upper institutionName}}</div>
+    <div class="inst-sub">(Approved by AICTE, New Delhi | Affiliated to BPUT, Rourkela)</div>
+    <div class="inst-sub">NH-5, Bhubaneswar–Cuttack Road, Bhubaneswar, Odisha — 752101</div>
+  </div>
+
+  <div class="cert-title">
+    <h2>TRANSFER CERTIFICATE</h2>
+    <div class="cert-no">TC No: <strong>{{certId}}</strong></div>
+  </div>
+
+  <table class="tc-table">
+    <tr><td class="sl-col">1</td><td>Name of the Student</td><td>{{upper studentName}}</td></tr>
+    <tr><td class="sl-col">2</td><td>Father's Name</td><td>{{upper fatherName}}</td></tr>
+    <tr><td class="sl-col">3</td><td>Mother's Name</td><td>{{upper motherName}}</td></tr>
+    <tr><td class="sl-col">4</td><td>University Roll Number</td><td>{{rollNumber}}</td></tr>
+    <tr><td class="sl-col">5</td><td>Enrolment Number</td><td>{{enrollmentNumber}}</td></tr>
+    <tr><td class="sl-col">6</td><td>Programme</td><td>{{program}} — {{branch}}</td></tr>
+    <tr><td class="sl-col">7</td><td>Date of Admission</td><td>{{formatDate dateOfAdmission}}</td></tr>
+    <tr><td class="sl-col">8</td><td>Date of Leaving</td><td>{{formatDate dateOfLeaving}}</td></tr>
+    <tr><td class="sl-col">9</td><td>Semesters Completed</td><td>{{semesterCompleted}} Semester(s)</td></tr>
+    <tr><td class="sl-col">10</td><td>CGPA at Time of Leaving</td><td>{{cgpa}} / 10.0</td></tr>
+    <tr><td class="sl-col">11</td><td>Conduct and Character</td><td>{{conductCharacter}}</td></tr>
+    <tr><td class="sl-col">12</td><td>Reason for Leaving</td><td>{{reasonForLeaving}}</td></tr>
+    <tr><td class="sl-col">13</td><td>No Dues Clearance</td><td>Cleared — All dues paid</td></tr>
+    <tr><td class="sl-col">14</td><td>Date of Issue</td><td>{{formatDate issuedDate}}</td></tr>
+  </table>
+
+  <div class="cert-body">
+    <p>This is to certify that the above-named student has been a bonafide student of this institute and left on the
+    date mentioned above. He/She has cleared all dues and no disciplinary action is pending against him/her.</p>
+  </div>
+
+  <div class="note-box">
+    <p>⚠ This certificate is issued only once. Any loss or damage is not the responsibility of the institute. For duplicate TC, a written application with a fee of ₹ 500/- is required.</p>
+  </div>
+
+  <div class="cert-footer">
+    <div class="date-place">
+      <p>Date: <strong>{{formatDate issuedDate}}</strong></p>
+      <p>Place: Bhubaneswar, Odisha</p>
+      <br/>
+      <div class="qr-area">
+        <img src="{{qrCode}}" alt="Verify"/>
+        <p>Scan to verify | TC No: {{certId}}</p>
+      </div>
+    </div>
+    <div class="authority">
+      <div class="seal-box">OFFICIAL<br/>SEAL</div>
+      <div class="sig-line"></div>
+      <p>{{issuedBy}}</p>
+      <small>Principal / Registrar</small><br/>
+      <small>{{institutionName}}</small>
+    </div>
+  </div>
+
+  <p style="text-align:center; font-size:10px; color:#aaa; margin-top:16px; border-top: 1px dashed #eee; padding-top:8px;">
+    Generated on {{generatedAt}} via Institution ERP
+  </p>
+</div>
+</body>
+</html>

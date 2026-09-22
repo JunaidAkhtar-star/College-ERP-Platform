@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Custom Webhook</title>
+  <rect x="3" y="3" width="58" height="58" rx="18" fill="#0178D7"/>
+  <path d="M24 19a9 9 0 0 0-6 15.7M40 45a9 9 0 0 0 6-15.7M21 40a9 9 0 0 0 15-7.2" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="24" cy="19" r="4" fill="#fff"/><circle cx="40" cy="45" r="4" fill="#fff"/><circle cx="21" cy="40" r="4" fill="#fff"/>
+</svg>

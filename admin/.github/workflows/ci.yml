@@ -1,0 +1,36 @@
+name: Admin release checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: admin-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_PUBLIC_BACKEND_URL: https://api.example.com/api/v1
+      NEXT_PUBLIC_ADMIN_URL: https://admin.example.com
+      NEXT_PUBLIC_WEBSITE_URL: https://www.example.com
+      NEXT_PUBLIC_ERP_URL: https://erp.example.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build
+      - run: pnpm audit --prod --audit-level high

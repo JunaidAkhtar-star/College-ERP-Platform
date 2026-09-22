@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:Arial,sans-serif;font-size:10.5pt;color:#000;background:#fff;padding:12mm 15mm}
+  .page{width:190mm;min-height:267mm;margin:0 auto}
+  
+  .letterhead{border-bottom:3px solid #1a237e;padding-bottom:4mm;margin-bottom:4mm;display:flex;align-items:center;gap:6mm}
+  .logo-circle{width:18mm;height:18mm;border:2px solid #1a237e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:bold;color:#1a237e;flex-shrink:0}
+  .college-info{flex:1}
+  .college-info .name{font-size:14pt;font-weight:bold;color:#1a237e}
+  .college-info .sub{font-size:8.5pt;color:#444;margin-top:0.5mm}
+  
+  .ref-date{display:flex;justify-content:space-between;font-size:9pt;margin-bottom:4mm;color:#444}
+  
+  .subject-line{margin-bottom:5mm}
+  .subject-line strong{font-size:11pt}
+  
+  .salutation{margin-bottom:3mm;font-size:10.5pt}
+  
+  .body-text{font-size:10.5pt;line-height:1.9;text-align:justify;margin-bottom:3mm}
+  
+  .highlight-box{border-left:4px solid #1a237e;padding:2mm 4mm;margin:3mm 0;background:#f5f5ff;font-size:10pt}
+  .highlight-box table{width:100%;border-collapse:collapse}
+  .highlight-box td{padding:1mm 2mm;font-size:10pt}
+  .highlight-box td:first-child{font-weight:bold;width:50mm}
+  .highlight-box td:nth-child(2){width:6mm;text-align:center}
+  
+  .sig-block{margin-top:14mm}
+  .sig-line{width:45mm;border-top:1px solid #000;margin-bottom:1.5mm}
+  .sig-block p{font-size:10pt;line-height:1.6}
+  .sig-block .name{font-weight:bold;font-size:11pt}
+  
+  .seal-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:6mm}
+  .seal-box{width:28mm;height:28mm;border:1.5px dashed #999;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7.5pt;color:#999;text-align:center}
+  
+  .footer-note{font-size:7.5pt;color:#777;text-align:center;margin-top:6mm;border-top:1px solid #ddd;padding-top:2mm}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="letterhead">
+    <div class="logo-circle">{{institutionShortCode}}</div>
+    <div class="college-info">
+      <div class="name">RAAJDHANI INSTITUTE OF TECHNOLOGY &amp; ENGINEERING</div>
+      <div class="sub">Approved by AICTE, New Delhi | Affiliated to BPUT, Odisha</div>
+      <div class="sub">{{institutionAddress}} | {{institutionEmail}}</div>
+    </div>
+  </div>
+
+  <div class="ref-date">
+    <span>Ref. No.: <strong>{{letterNumber}}</strong></span>
+    <span>Date: {{issuedDate}}</span>
+  </div>
+
+  <p class="body-text"><strong>To Whomsoever It May Concern</strong></p>
+
+  <div class="subject-line">
+    <strong>Subject: Experience Certificate — {{employeeName}} ({{designation}})</strong>
+  </div>
+
+  <p class="body-text">
+    This is to certify that <strong>{{employeeName}}</strong>, Employee ID: <strong>{{employeeId}}</strong>,
+    was employed with <strong>Raajdhani Institute of Technology &amp; Engineering, Bhubaneswar</strong>
+    in the capacity of <strong>{{designation}}</strong> in the Department of <strong>{{department}}</strong>.
+  </p>
+
+  <div class="highlight-box">
+    <table>
+      <tr><td>Employee Name</td><td>:</td><td><strong>{{employeeName}}</strong></td></tr>
+      <tr><td>Employee ID</td><td>:</td><td>{{employeeId}}</td></tr>
+      <tr><td>Designation</td><td>:</td><td>{{designation}}</td></tr>
+      <tr><td>Department</td><td>:</td><td>{{department}}</td></tr>
+      <tr><td>Date of Joining</td><td>:</td><td>{{dateOfJoining}}</td></tr>
+      <tr><td>Date of Relieving</td><td>:</td><td>{{dateOfRelieving}}</td></tr>
+    </table>
+  </div>
+
+  <p class="body-text">
+    During his/her tenure with the institution, he/she has demonstrated <strong>sincere dedication,
+    professional competence, and commendable academic contributions</strong>. He/She was responsible for
+    teaching, research, and academic administration as assigned from time to time.
+  </p>
+
+  <p class="body-text">
+    His/Her conduct, behavior, and performance have been found to be <strong>satisfactory</strong>.
+    He/She has been relieved from the services of this institution on <strong>{{dateOfRelieving}}</strong>
+    on his/her own accord and there are no dues pending against him/her.
+  </p>
+
+  <p class="body-text">
+    We wish him/her all the best in his/her future endeavors.
+  </p>
+
+  <div class="seal-row">
+    <div class="seal-box">Official<br/>Seal</div>
+    <div class="sig-block">
+      <div class="sig-line"></div>
+      <p class="name">{{principalName}}</p>
+      <p>Principal</p>
+      <p>Raajdhani Institute of Technology &amp; Engineering</p>
+      <p>Bhubaneswar — 751010</p>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    This certificate is issued for official purposes only. For verification, contact: {{institutionEmail}} | Ref: {{letterNumber}}
+  </div>
+
+</div>
+</body>
+</html>

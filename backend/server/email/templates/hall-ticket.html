@@ -1,0 +1,71 @@
+<span class="eyebrow">Examinations</span>
+<h2>Hall ticket · Semester {{semester}}</h2>
+<p>Dear <strong>{{studentName}}</strong>,</p>
+<p>
+  Your Hall Ticket for the
+  <strong>{{examType}} Examination — {{semester}} Semester, {{academicYear}}</strong> has been
+  generated. Please find it attached to this email.
+</p>
+
+<table class="info-table">
+  <tr>
+    <td>Student Name</td>
+    <td><strong>{{studentName}}</strong></td>
+  </tr>
+  <tr>
+    <td>Roll Number</td>
+    <td><strong>{{rollNumber}}</strong></td>
+  </tr>
+  <tr>
+    <td>Enrolment No.</td>
+    <td>{{enrollmentNumber}}</td>
+  </tr>
+  <tr>
+    <td>Programme</td>
+    <td>{{program}} — {{branch}}</td>
+  </tr>
+  <tr>
+    <td>Semester</td>
+    <td>{{semester}}</td>
+  </tr>
+  <tr>
+    <td>Exam Centre</td>
+    <td>{{examCentre}}</td>
+  </tr>
+  <tr>
+    <td>Exam Starts</td>
+    <td>{{examStartDate}}</td>
+  </tr>
+  <tr>
+    <td>Hall Ticket No.</td>
+    <td><strong>{{hallTicketNumber}}</strong></td>
+  </tr>
+  <tr>
+    <td>BPUT Exam Roll</td>
+    <td>{{bputExamRoll}}</td>
+  </tr>
+</table>
+
+<div class="highlight-box">
+  <p>
+    Print the attached Hall Ticket and bring it to <strong>every examination session</strong>. Entry
+    without a Hall Ticket is prohibited.
+  </p>
+</div>
+
+<div class="section-title">Important instructions</div>
+<ul class="checklist">
+  <li>Report 30 minutes before the scheduled examination time.</li>
+  <li>Carry a valid photo ID together with the Hall Ticket.</li>
+  <li>Mobile phones and electronic devices are prohibited in the examination hall.</li>
+  <li>Attendance eligibility rules remain applicable.</li>
+  <li>Report discrepancies to the Examination Cell immediately.</li>
+</ul>
+
+<div class="alert-box">
+  <p>
+    <strong>Attendance status:</strong> {{#if attendanceShortage}}You have an attendance shortage in
+    <strong>{{shortSubjects}}</strong>. Contact your HOD before the exam.{{else}}Your attendance is
+    satisfactory.{{/if}}
+  </p>
+</div>

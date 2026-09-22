@@ -1,0 +1,21 @@
+<h2>Leave Request Update</h2>
+<p>Dear <strong>{{recipientName}}</strong>,</p>
+
+<p>There is an update on your leave request.</p>
+
+<div class="highlight-box">
+  <p><strong>{{title}}</strong></p>
+  <p style="margin-top: 8px">{{body}}</p>
+</div>
+
+{{#if actionUrl}}
+<p style="text-align: center">
+  <a href="{{actionUrl}}" class="btn-primary">View Leave Request</a>
+</p>
+{{/if}}
+
+<p>
+  If you believe this decision needs reconsideration, please contact your reporting officer or HR.
+</p>
+
+<p>Human Resources</p>

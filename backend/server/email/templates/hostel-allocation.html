@@ -1,0 +1,22 @@
+<h2>Hostel Allocation</h2>
+<p>Dear <strong>{{recipientName}}</strong>,</p>
+
+<p>Your hostel accommodation has been processed.</p>
+
+<div class="highlight-box">
+  <p><strong>{{title}}</strong></p>
+  <p style="margin-top: 8px">{{body}}</p>
+</div>
+
+{{#if actionUrl}}
+<p style="text-align: center">
+  <a href="{{actionUrl}}" class="btn-primary">View Allocation Details</a>
+</p>
+{{/if}}
+
+<p>
+  Please report to the hostel warden's office with a copy of your ID card and admission letter to
+  complete check-in formalities.
+</p>
+
+<p>Hostel Administration</p>

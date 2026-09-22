@@ -1,0 +1,22 @@
+<h2>Semester Registration Update</h2>
+<p>Dear <strong>{{recipientName}}</strong>,</p>
+
+<p>There is an update on your semester registration.</p>
+
+<div class="highlight-box">
+  <p><strong>{{title}}</strong></p>
+  <p style="margin-top: 8px">{{body}}</p>
+</div>
+
+{{#if actionUrl}}
+<p style="text-align: center">
+  <a href="{{actionUrl}}" class="btn-primary">View Registration</a>
+</p>
+{{/if}}
+
+<p>
+  If your registration was rejected and you wish to appeal, please contact the academic office
+  before the deadline.
+</p>
+
+<p>Academic Section</p>

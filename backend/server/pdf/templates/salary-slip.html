@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Salary Slip — {{institutionShortCode}}</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: Arial, sans-serif; font-size: 12.5px; color: #222; background: #fff; }
+  .page { width: 210mm; padding: 14mm; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-35deg); font-size: 80px; font-weight: 900; color: rgba(26,35,126,0.04); white-space: nowrap; pointer-events: none; }
+  .header { text-align: center; background: #1a237e; color: white; padding: 16px 20px; border-radius: 6px 6px 0 0; }
+  .header h1 { font-size: 18px; letter-spacing: 1px; }
+  .header p { font-size: 10px; margin-top: 3px; color: #bbdefb; }
+  .slip-title { text-align: center; background: #283593; color: #e3f2fd; padding: 8px; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+  .emp-info { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #e0e0e0; margin-bottom: 14px; }
+  .emp-info .cell { padding: 7px 12px; font-size: 12px; border-bottom: 1px solid #f0f0f0; }
+  .emp-info .cell:nth-child(odd) { background: #fafafa; font-weight: 500; color: #666; border-right: 1px solid #f0f0f0; }
+  .emp-info .cell:nth-child(even) { font-weight: 600; color: #111; }
+  .pay-section { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .pay-table { width: 100%; border-collapse: collapse; }
+  .pay-table thead tr { background: #1a237e; color: white; }
+  .pay-table thead th { padding: 7px 10px; text-align: left; font-size: 12px; }
+  .pay-table thead th:last-child { text-align: right; }
+  .pay-table tbody td { padding: 6px 10px; font-size: 12px; border-bottom: 1px solid #f0f0f0; }
+  .pay-table tbody td:last-child { text-align: right; font-weight: 500; }
+  .pay-table tfoot td { padding: 8px 10px; font-weight: 700; background: #e8eaf6; font-size: 13px; }
+  .pay-table tfoot td:last-child { text-align: right; color: #1a237e; }
+  .net-box { background: #1a237e; color: white; padding: 12px 20px; border-radius: 0 0 6px 6px; display: flex; justify-content: space-between; align-items: center; }
+  .net-box .label { font-size: 14px; font-weight: 700; letter-spacing: 1px; }
+  .net-box .amount { font-size: 24px; font-weight: 900; }
+  .net-box .sub { font-size: 11px; color: #90caf9; margin-top: 3px; }
+  .footer-info { margin-top: 14px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-info .note { font-size: 10px; color: #888; line-height: 1.7; }
+  .footer-info .sig { text-align: center; }
+  .footer-info .sig .sig-line { width: 130px; border-top: 1px solid #555; margin: 0 auto 4px; }
+  .footer-info .sig p { font-size: 11px; color: #444; font-weight: 600; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<div class="watermark">CONFIDENTIAL</div>
+<div class="page">
+
+  <div class="header">
+    <h1>{{upper institutionName}}</h1>
+    <p>{{institutionAddress}} | {{institutionEmail}}</p>
+  </div>
+  <div class="slip-title">SALARY SLIP — {{month}} {{year}}</div>
+
+  <div class="emp-info" style="margin-top:12px;">
+    <div class="cell">Employee ID</div><div class="cell">{{employeeId}}</div>
+    <div class="cell">Employee Name</div><div class="cell">{{upper employeeName}}</div>
+    <div class="cell">Designation</div><div class="cell">{{designation}}</div>
+    <div class="cell">Department</div><div class="cell">{{department}}</div>
+    <div class="cell">Bank Account No.</div><div class="cell">{{bankAccount}}</div>
+    <div class="cell">PF Account No.</div><div class="cell">{{pfAccount}}</div>
+    <div class="cell">Days Paid</div><div class="cell">{{paidDays}} days</div>
+    <div class="cell">LOP Days</div><div class="cell">{{lopDays}} days</div>
+  </div>
+
+  <div class="pay-section">
+    <table class="pay-table">
+      <thead><tr><th>Earnings</th><th>Amount (₹)</th></tr></thead>
+      <tbody>
+        {{#each earnings}}
+        <tr><td>{{this.component}}</td><td>{{formatINR this.amount}}</td></tr>
+        {{/each}}
+      </tbody>
+      <tfoot><tr><td>Gross Earnings</td><td>₹ {{formatINR grossPay}}</td></tr></tfoot>
+    </table>
+    <table class="pay-table">
+      <thead><tr><th>Deductions</th><th>Amount (₹)</th></tr></thead>
+      <tbody>
+        {{#each deductions}}
+        <tr><td>{{this.component}}</td><td>{{formatINR this.amount}}</td></tr>
+        {{/each}}
+      </tbody>
+      <tfoot><tr><td>Total Deductions</td><td>₹ {{formatINR totalDeductions}}</td></tr></tfoot>
+    </table>
+  </div>
+
+  <div class="net-box">
+    <div>
+      <div class="label">NET PAY (Take Home)</div>
+      <div class="sub">Gross ₹ {{formatINR grossPay}} — Deductions ₹ {{formatINR totalDeductions}}</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="amount">₹ {{formatINR netPay}}</div>
+    </div>
+  </div>
+
+  <div class="footer-info" style="margin-top:16px;">
+    <div class="note">
+      <p>1. This is a computer-generated salary slip, valid without signature.</p>
+      <p>2. For discrepancies, contact HR/Accounts within 7 days.</p>
+      <p>3. Generated: {{generatedAt}} via Institution ERP</p>
+    </div>
+    <div class="sig">
+      <div class="sig-line"></div>
+      <p>HR Department</p>
+      <small>{{institutionName}}</small>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

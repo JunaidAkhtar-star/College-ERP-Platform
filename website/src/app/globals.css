@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Work+Sans:wght@400;500;600;700;800;900&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary-color: #0178d7;
+  --secondary-color: #9bb94f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Font */
+  --font-sans: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Primary: #0178D7 */
+  --color-primary-50: #e6f2fb;
+  --color-primary-100: #cce4f7;
+  --color-primary-200: #99c9ef;
+  --color-primary-300: #66aee7;
+  --color-primary-400: #3393df;
+  --color-primary-500: var(--primary-color);
+  --color-primary-600: #015eac;
+  --color-primary-700: #014b89;
+  --color-primary-800: #013866;
+  --color-primary-900: #002544;
+  --color-primary: var(--primary-color);
+
+  /* Secondary: #9BB94F */
+  --color-secondary-50: #f5f8ec;
+  --color-secondary-100: #ebf2d9;
+  --color-secondary-200: #d7e4b3;
+  --color-secondary-300: #c3d78d;
+  --color-secondary-400: #afca67;
+  --color-secondary-500: var(--secondary-color);
+  --color-secondary-600: #7c9440;
+  --color-secondary-700: #5d6f30;
+  --color-secondary-800: #3e4a20;
+  --color-secondary-900: #1f2510;
+  --color-secondary: var(--secondary-color);
+
+  /* Tertiary: #B0B0B0 */
+  --color-tertiary-50: #f7f7f7;
+  --color-tertiary-100: #efefef;
+  --color-tertiary-200: #dfdfdf;
+  --color-tertiary-300: #cfcfcf;
+  --color-tertiary-400: #bfbfbf;
+  --color-tertiary-500: #b0b0b0;
+  --color-tertiary-600: #8d8d8d;
+  --color-tertiary-700: #6a6a6a;
+  --color-tertiary-800: #474747;
+  --color-tertiary-900: #242424;
+  --color-tertiary: #b0b0b0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    'Work Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(1, 120, 215, 0.2);
+  color: #172033;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.shake-input {
+  animation: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.light-grid-overlay {
+  background-image: radial-gradient(rgba(1, 120, 215, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}

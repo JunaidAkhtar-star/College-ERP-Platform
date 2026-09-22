@@ -1,0 +1,39 @@
+name: ERP quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: erp-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_PUBLIC_BACKEND_URL: http://localhost:5000/api/v1
+      NEXT_PUBLIC_WEBSITE_URL: http://localhost:3001
+      NEXT_PUBLIC_ADMIN_URL: http://localhost:3002
+      NEXT_PUBLIC_ERP_URL: http://localhost:3000
+      NEXT_PUBLIC_ERP_ROOT_DOMAIN: localhost
+      NEXT_DIST_DIR: .next-ci
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run check
+      - run: pnpm test
+      - run: pnpm run build

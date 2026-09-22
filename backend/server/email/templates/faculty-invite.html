@@ -1,0 +1,29 @@
+<h2>
+  Welcome to {{#if instituteName}}{{instituteName}}{{else}}your institution ERP{{/if}}, {{name}}!
+</h2>
+<p>Your account has been created by the administrator.</p>
+
+<div class="highlight-box">
+  <p><strong>Your Faculty ID:</strong> {{facultyId}}</p>
+  <p><strong>Login Email:</strong> {{email}}</p>
+  <p><strong>Department:</strong> {{department}}</p>
+  <p><strong>Designation:</strong> {{designation}}</p>
+</div>
+
+<p>To activate your account, verify your email and set a password by clicking the button below:</p>
+
+<p style="text-align: center">
+  <a href="{{setupUrl}}" class="btn-primary">Verify email and set password</a>
+</p>
+
+<p>Or copy this link into your browser:</p>
+<p>{{setupUrl}}</p>
+
+<div class="alert-box">
+  <p>
+    This link is valid for <strong>24 hours</strong>. If it expires, contact the administrator for a
+    fresh invite.
+  </p>
+</div>
+
+<p>Welcome aboard,<br />Institution Administration</p>

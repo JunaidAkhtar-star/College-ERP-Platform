@@ -1,0 +1,42 @@
+<h2>Complete your subscription payment</h2>
+<p>Dear <strong>{{institutionName}} Administrator</strong>,</p>
+
+<p>
+  Your <strong>{{planName}}</strong> registration has been reserved. Complete the payment within
+  <strong>24 hours</strong>; your institution database will not be created until an authorized
+  platform administrator verifies and approves the payment.
+</p>
+
+<table class="info-table" role="presentation">
+  <tr>
+    <td>Institution</td>
+    <td>{{institutionName}}</td>
+  </tr>
+  <tr>
+    <td>Plan</td>
+    <td>{{planName}}</td>
+  </tr>
+  <tr>
+    <td>Reserved invoice</td>
+    <td>{{invoiceNumber}}</td>
+  </tr>
+  <tr>
+    <td>Amount payable</td>
+    <td>{{amount}}</td>
+  </tr>
+</table>
+
+<p style="text-align: center">
+  <a href="{{paymentLink}}" class="btn-primary">Open secure payment page</a>
+</p>
+
+<p>
+  The private page is linked only to this institution and reserved invoice. Open it to view the
+  beneficiary details, select NEFT, RTGS, IMPS or UPI, and submit the bank transaction reference,
+  payment date and proof. Access is activated only after verification.
+</p>
+
+<p>
+  <strong>Security:</strong> This link is unique, expires after 24 hours and should not be
+  forwarded.
+</p>

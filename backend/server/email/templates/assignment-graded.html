@@ -1,0 +1,19 @@
+<h2>Assignment Graded</h2>
+<p>Dear <strong>{{recipientName}}</strong>,</p>
+
+<p>Your assignment submission has been evaluated.</p>
+
+<div class="highlight-box">
+  <p><strong>{{title}}</strong></p>
+  <p style="margin-top: 8px">{{body}}</p>
+</div>
+
+{{#if actionUrl}}
+<p style="text-align: center">
+  <a href="{{actionUrl}}" class="btn-primary">View Marks &amp; Feedback</a>
+</p>
+{{/if}}
+
+<p>For any clarification on the evaluation, please reach out to the concerned faculty member.</p>
+
+<p>Academic Department</p>

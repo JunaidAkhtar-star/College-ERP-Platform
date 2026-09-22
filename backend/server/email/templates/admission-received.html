@@ -1,0 +1,72 @@
+<span class="eyebrow">Admissions</span>
+<h2>Application received</h2>
+<p>Dear <strong>{{candidateName}}</strong>,</p>
+<p>
+  Thank you for applying for the academic session <strong>{{session}}</strong>. Your application has
+  been received and is currently under review.
+</p>
+
+<table class="info-table">
+  <tr>
+    <td>Application Number</td>
+    <td><strong>{{applicationNumber}}</strong></td>
+  </tr>
+  <tr>
+    <td>Programme Applied</td>
+    <td>{{program}}</td>
+  </tr>
+  <tr>
+    <td>Admission Type</td>
+    <td>{{admissionType}}</td>
+  </tr>
+  <tr>
+    <td>Category</td>
+    <td>{{category}}</td>
+  </tr>
+  <tr>
+    <td>Entrance Exam</td>
+    <td>{{entranceExam}} — Rank/Score: {{entranceRank}}</td>
+  </tr>
+  <tr>
+    <td>Application Date</td>
+    <td>{{appliedDate}}</td>
+  </tr>
+  <tr>
+    <td>Current Status</td>
+    <td><span class="badge badge-warning">{{status}}</span></td>
+  </tr>
+</table>
+
+<div class="highlight-box">
+  <p>
+    Please keep your Application Number <strong>{{applicationNumber}}</strong> for all future
+    correspondence regarding your admission.
+  </p>
+</div>
+
+<div class="section-title">What happens next</div>
+<div class="steps">
+  <div class="step">
+    <span class="step-number">1</span><strong>Document verification.</strong> The admissions team
+    reviews submitted documents.
+  </div>
+  <div class="step">
+    <span class="step-number">2</span><strong>Merit list.</strong> Results are published on the
+    website and portal.
+  </div>
+  <div class="step">
+    <span class="step-number">3</span><strong>Counseling.</strong> Shortlisted candidates receive
+    seat-allocation instructions.
+  </div>
+  <div class="step">
+    <span class="step-number">4</span><strong>Fee payment.</strong> Selected candidates complete
+    payment before the deadline.
+  </div>
+</div>
+
+<p>Track your application status at any time:</p>
+<p class="action-row">
+  <a href="{{trackingUrl}}" class="btn-primary">Track My Application</a>
+</p>
+
+<p>For queries, please contact your institution's Admissions Office.</p>

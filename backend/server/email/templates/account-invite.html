@@ -1,0 +1,52 @@
+<span class="eyebrow">Account activation</span>
+<h2>
+  Welcome to {{#if instituteName}}{{instituteName}}{{else}}your institution portal{{/if}}, {{name}}!
+</h2>
+<p>
+  Your secure ERP account has been created by {{#if instituteName}}{{instituteName}}{{else}}your
+  institution{{/if}}. Complete the verification step below before signing in.
+</p>
+
+<table class="info-table">
+  <tr>
+    <td>Employee / Student ID</td>
+    <td>{{userId}}</td>
+  </tr>
+  <tr>
+    <td>Role</td>
+    <td>{{role}}</td>
+  </tr>
+  {{#if department}}
+  <tr>
+    <td>Department</td>
+    <td>{{department}}</td>
+  </tr>
+  {{/if}}
+  <tr>
+    <td>Login Email</td>
+    <td>{{email}}</td>
+  </tr>
+</table>
+
+<div class="highlight-box">
+  <p>Verify this email address and choose a secure password to activate your account.</p>
+</div>
+
+<p class="action-row">
+  <a href="{{setupUrl}}" class="btn-primary">Verify email and set password</a>
+</p>
+
+<p>If the button does not open, copy this secure link into your browser:</p>
+<p class="link-fallback">{{setupUrl}}</p>
+
+<div class="alert-box">
+  <p>
+    This single-use link is valid for <strong>24 hours</strong>. Do not forward this email or share
+    the activation link.
+  </p>
+</div>
+
+<p>
+  Regards,<br />
+  <strong>{{#if instituteName}}{{instituteName}}{{else}}Institution Administration{{/if}}</strong>
+</p>

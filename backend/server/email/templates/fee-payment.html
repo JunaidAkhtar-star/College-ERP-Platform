@@ -1,0 +1,68 @@
+<span class="eyebrow">Accounts</span>
+<h2>Fee payment confirmed</h2>
+<p>Dear <strong>{{studentName}}</strong>,</p>
+<p>
+  We acknowledge receipt of your fee payment for the current academic term. Your payment has been
+  successfully recorded in our system.
+</p>
+
+<table class="info-table">
+  <tr>
+    <td>Student Name</td>
+    <td><strong>{{studentName}}</strong></td>
+  </tr>
+  <tr>
+    <td>Roll Number</td>
+    <td>{{rollNumber}}</td>
+  </tr>
+  <tr>
+    <td>Programme & Branch</td>
+    <td>{{program}} — {{branch}}</td>
+  </tr>
+  <tr>
+    <td>Semester / Year</td>
+    <td>Semester {{semester}} (Year {{year}})</td>
+  </tr>
+  <tr>
+    <td>Receipt Number</td>
+    <td><strong>{{receiptNumber}}</strong></td>
+  </tr>
+  <tr>
+    <td>Amount Paid</td>
+    <td><strong>₹ {{amount}}</strong></td>
+  </tr>
+  <tr>
+    <td>Payment Mode</td>
+    <td>{{paymentMode}}</td>
+  </tr>
+  <tr>
+    <td>Transaction ID</td>
+    <td>{{transactionId}}</td>
+  </tr>
+  <tr>
+    <td>Payment Date & Time</td>
+    <td>{{paymentDate}}</td>
+  </tr>
+  <tr>
+    <td>Payment Status</td>
+    <td><span class="badge badge-success">CONFIRMED</span></td>
+  </tr>
+</table>
+
+{{#if pendingAmount}}
+<div class="alert-box">
+  <p>
+    <strong>Pending balance:</strong> ₹ {{pendingAmount}}. Please clear the outstanding amount
+    before <strong>{{dueDate}}</strong> to avoid late fees.
+  </p>
+</div>
+{{/if}}
+
+<div class="highlight-box">
+  <p>A detailed fee receipt is attached as a PDF. Please retain it for future reference.</p>
+</div>
+
+<p>
+  For any discrepancy in the payment record, please contact your institution's Accounts Department
+  within <strong>7 working days</strong>.
+</p>

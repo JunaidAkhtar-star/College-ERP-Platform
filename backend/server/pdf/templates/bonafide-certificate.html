@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Bonafide Certificate — {{institutionShortCode}}</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Times New Roman', serif; font-size: 13px; color: #111; background: #fff; }
+  .page { width: 210mm; min-height: 297mm; padding: 18mm 20mm; position: relative; }
+  /* BORDER */
+  .outer-border { position: fixed; top: 8mm; left: 8mm; right: 8mm; bottom: 8mm;
+    border: 3px solid #1a237e; pointer-events: none; z-index: 0; }
+  .inner-border { position: fixed; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+    border: 1px solid #7986cb; pointer-events: none; z-index: 0; }
+  /* WATERMARK */
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-35deg);
+    font-size: 100px; font-weight: 900; color: rgba(26,35,126,0.04); white-space: nowrap; z-index: 0; }
+  /* HEADER */
+  .header { text-align: center; border-bottom: 2px solid #1a237e; padding-bottom: 14px; margin-bottom: 20px; }
+  .header .inst-name { font-size: 24px; font-weight: 700; color: #1a237e; letter-spacing: 1px; }
+  .header .inst-sub { font-size: 11px; color: #555; margin: 4px 0; }
+  .header .inst-approved { font-size: 10px; color: #777; }
+  /* TITLE */
+  .cert-title { text-align: center; margin: 24px 0 20px; }
+  .cert-title h2 { font-size: 22px; font-weight: 700; color: #1a237e; letter-spacing: 2px; text-decoration: underline; text-underline-offset: 5px; }
+  .cert-title .cert-no { font-size: 11px; color: #777; margin-top: 6px; }
+  /* BODY */
+  .cert-body { font-size: 14px; line-height: 2; text-align: justify; margin: 0 10px; }
+  .cert-body .blank { border-bottom: 1px solid #333; display: inline-block; min-width: 180px; font-weight: 700; }
+  /* TABLE */
+  .cert-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+  .cert-table td { padding: 8px 16px; font-size: 13px; border: 1px solid #ddd; }
+  .cert-table td:first-child { background: #f5f5f5; font-weight: 600; width: 42%; }
+  /* PHOTO AREA */
+  .photo-area { float: right; margin: 0 0 12px 20px; text-align: center; }
+  .photo-box { width: 90px; height: 110px; border: 1px solid #999; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #aaa; background: #fafafa; }
+  .photo-area p { font-size: 10px; color: #888; margin-top: 4px; }
+  /* PURPOSE */
+  .purpose-box { background: #e8eaf6; border: 1px solid #7986cb; border-radius: 4px; padding: 10px 14px; margin: 16px 0; }
+  .purpose-box p { font-size: 12px; color: #333; }
+  /* FOOTER */
+  .cert-footer { margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .cert-footer .date-place { font-size: 12px; }
+  .cert-footer .date-place p { margin: 4px 0; }
+  .cert-footer .authority { text-align: center; }
+  .cert-footer .authority .sig-line { width: 160px; border-top: 1px solid #333; margin: 0 auto 6px; }
+  .cert-footer .authority p { font-size: 12px; font-weight: 600; }
+  .cert-footer .authority small { font-size: 11px; color: #555; }
+  .cert-footer .authority .seal-box { width: 80px; height: 80px; border: 1px dashed #999; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #bbb; margin: 0 auto 8px; }
+  .qr-section { text-align: center; margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 12px; }
+  .qr-section img { width: 65px; }
+  .qr-section p { font-size: 9px; color: #aaa; margin-top: 3px; }
+  .verify-text { font-size: 10px; color: #777; margin-top: 4px; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<div class="outer-border"></div>
+<div class="inner-border"></div>
+<div class="watermark">{{upper institutionShortCode}}</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="inst-name">{{upper institutionName}}</div>
+    <div class="inst-sub">(Approved by AICTE, New Delhi | Affiliated to BPUT, Rourkela)</div>
+    <div class="inst-sub">NH-5, Bhubaneswar–Cuttack Road, Bhubaneswar, Odisha — 752101</div>
+    <div class="inst-approved">ISO 9001:2015 Certified | NAAC Accredited | Estd. 2008</div>
+  </div>
+
+  <!-- TITLE -->
+  <div class="cert-title">
+    <h2>BONAFIDE CERTIFICATE</h2>
+    <div class="cert-no">Certificate No: <strong>{{certId}}</strong></div>
+  </div>
+
+  <!-- CERT BODY -->
+  <div class="cert-body">
+    <p>This is to certify that <span class="blank">{{upper studentName}}</span>, Son/Daughter of <span class="blank">{{upper fatherName}}</span>,
+    bearing Roll Number <span class="blank">{{rollNumber}}</span> is a <em>bonafide</em> student of this institute
+    and is currently enrolled in the <strong>{{program}} ({{branch}})</strong> programme,
+    <strong>Semester {{semester}}</strong>, during the academic year <strong>{{academicYear}}</strong>.</p>
+
+    <br/>
+
+    <p>The student was admitted on <span class="blank">{{formatDate dateOfAdmission}}</span> through the regular admission process
+    as per BPUT norms. His/Her conduct and character have been <strong>satisfactory</strong> during his/her stay in this institution.</p>
+
+    <br/>
+
+    <div class="purpose-box">
+      <p>This certificate is issued on the request of the student for the purpose of: <strong>{{purpose}}</strong></p>
+    </div>
+
+    <br/>
+
+    <p>This certificate is issued without any prejudice and to the best of our knowledge and belief.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="cert-footer">
+    <div class="date-place">
+      <p>Date: <strong>{{formatDate issuedDate}}</strong></p>
+      <p>Place: Bhubaneswar, Odisha</p>
+      <br/>
+      <div class="qr-section">
+        <img src="{{qrCode}}" alt="Verify"/>
+        <p>Scan to verify authenticity</p>
+        <p class="verify-text">Cert ID: {{certId}}</p>
+      </div>
+    </div>
+
+    <div class="authority">
+      <div class="seal-box">OFFICIAL<br/>SEAL</div>
+      <div class="sig-line"></div>
+      <p>{{issuedBy}}</p>
+      <small>{{designation}}</small><br/>
+      <small>{{institutionName}}</small>
+    </div>
+  </div>
+
+  <p style="text-align:center; font-size:10px; color:#aaa; margin-top:20px; border-top: 1px dashed #eee; padding-top: 10px;">
+    Generated on {{generatedAt}} via Institution ERP | This is a digitally generated certificate.
+  </p>
+
+</div>
+</body>
+</html>

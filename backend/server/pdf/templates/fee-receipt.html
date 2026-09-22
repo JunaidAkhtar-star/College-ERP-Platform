@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Fee Receipt — {{institutionShortCode}}</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: Arial, sans-serif; font-size: 13px; color: #222; background: #fff; }
+  .page { width: 210mm; min-height: 297mm; padding: 12mm; }
+  /* WATERMARK */
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-35deg);
+    font-size: 80px; font-weight: 900; color: rgba(26,35,126,0.05); white-space: nowrap; z-index: 0; pointer-events: none; }
+  /* HEADER */
+  .header { display: flex; align-items: center; border-bottom: 3px solid #1a237e; padding-bottom: 12px; margin-bottom: 14px; }
+  .header .logo-area { flex: 1; }
+  .header .logo-area h1 { font-size: 22px; color: #1a237e; font-weight: 900; letter-spacing: 1px; }
+  .header .logo-area p { font-size: 10px; color: #555; margin-top: 3px; }
+  .header .doc-info { text-align: right; }
+  .header .doc-info h2 { font-size: 18px; font-weight: 800; color: #1a237e; text-transform: uppercase; }
+  .header .doc-info .receipt-no { font-size: 13px; color: #333; margin-top: 4px; }
+  .header .doc-info .status { display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; border: 1px solid #a5d6a7; margin-top: 6px; }
+  /* STUDENT INFO */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; margin-bottom: 18px; }
+  .info-row { display: contents; }
+  .info-cell { padding: 8px 12px; font-size: 12px; border-bottom: 1px solid #f0f0f0; }
+  .info-cell.label { color: #666; font-weight: 500; background: #fafafa; border-right: 1px solid #f0f0f0; }
+  .info-cell.value { color: #222; font-weight: 600; }
+  /* FEE TABLE */
+  .section-title { font-size: 13px; font-weight: 700; color: #1a237e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; border-left: 3px solid #1a237e; padding-left: 8px; }
+  .fee-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .fee-table thead tr { background: #1a237e; color: white; }
+  .fee-table thead th { padding: 9px 12px; text-align: left; font-size: 12px; font-weight: 600; }
+  .fee-table thead th:last-child { text-align: right; }
+  .fee-table tbody tr:nth-child(even) { background: #f8f9ff; }
+  .fee-table tbody td { padding: 8px 12px; font-size: 12px; border-bottom: 1px solid #eee; }
+  .fee-table tbody td:last-child { text-align: right; font-weight: 600; }
+  .fee-table tfoot tr { background: #1a237e; color: white; }
+  .fee-table tfoot td { padding: 10px 12px; font-size: 13px; font-weight: 700; }
+  .fee-table tfoot td:last-child { text-align: right; }
+  /* PAYMENT BOX */
+  .payment-box { background: #e8eaf6; border: 1px solid #7986cb; border-radius: 6px; padding: 12px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+  .payment-box .method { font-size: 12px; color: #333; }
+  .payment-box .txn { font-size: 11px; color: #555; margin-top: 4px; }
+  .payment-box .amount-big { font-size: 22px; font-weight: 900; color: #1a237e; }
+  .payment-box .paid-label { font-size: 10px; color: #5c6bc0; text-align: right; }
+  /* WORDS */
+  .amount-words { background: #fff8e1; border: 1px solid #ffe082; border-radius: 4px; padding: 8px 12px; font-size: 12px; color: #555; margin-bottom: 16px; }
+  .amount-words strong { color: #333; }
+  /* FOOTER */
+  .footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 24px; padding-top: 16px; border-top: 2px dashed #ccc; }
+  .footer .note { font-size: 10px; color: #888; max-width: 55%; }
+  .footer .signature { text-align: center; }
+  .footer .signature .sig-line { width: 140px; border-top: 1px solid #555; margin: 0 auto 4px; }
+  .footer .signature p { font-size: 11px; color: #444; font-weight: 600; }
+  .footer .signature small { font-size: 10px; color: #777; }
+  /* QR */
+  .qr-area { text-align: center; }
+  .qr-area img { width: 70px; height: 70px; }
+  .qr-area p { font-size: 9px; color: #999; margin-top: 3px; }
+  /* DUPLICATE */
+  .duplicate-copy { border: 2px dashed #ccc; padding: 6px 14px; border-radius: 4px; font-size: 11px; color: #aaa; text-align: center; margin-bottom: 12px; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<div class="watermark">{{upper institutionShortCode}}</div>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-area">
+      <h1>{{institutionShortCode}}</h1>
+      <p>{{institutionName}}</p>
+      <p style="font-size:9px; color:#888;">NH-5, Bhubaneswar–Cuttack Road, Bhubaneswar, Odisha — 752101</p>
+      <p style="font-size:9px; color:#888;">{{institutionPhone}} {{institutionEmail}}</p>
+    </div>
+    <div class="doc-info">
+      <h2>Fee Receipt</h2>
+      <div class="receipt-no">Receipt No: <strong>{{receiptNumber}}</strong></div>
+      <div class="receipt-no">Date: <strong>{{paymentDate}}</strong></div>
+      <div class="status">✓ PAYMENT CONFIRMED</div>
+    </div>
+  </div>
+
+  <!-- STUDENT INFO -->
+  <p class="section-title">Student Details</p>
+  <div class="info-grid">
+    <div class="info-cell label">Student Name</div><div class="info-cell value">{{upper studentName}}</div>
+    <div class="info-cell label">Father's Name</div><div class="info-cell value">{{upper fatherName}}</div>
+    <div class="info-cell label">Roll Number</div><div class="info-cell value">{{rollNumber}}</div>
+    <div class="info-cell label">Programme</div><div class="info-cell value">{{program}} — {{branch}}</div>
+    <div class="info-cell label">Semester</div><div class="info-cell value">Semester {{semester}}</div>
+    <div class="info-cell label">Academic Year</div><div class="info-cell value">{{academicYear}}</div>
+  </div>
+
+  <!-- FEE TABLE -->
+  <p class="section-title">Fee Breakdown</p>
+  <table class="fee-table">
+    <thead><tr><th>#</th><th>Description</th><th>Amount (₹)</th></tr></thead>
+    <tbody>
+      {{#each feeItems}}
+      <tr><td>{{add @index 1}}</td><td>{{this.description}}</td><td>{{formatINR this.amount}}</td></tr>
+      {{/each}}
+    </tbody>
+    <tfoot><tr><td colspan="2">TOTAL AMOUNT PAID</td><td>₹ {{formatINR totalAmount}}</td></tr></tfoot>
+  </table>
+
+  <!-- PAYMENT INFO -->
+  <div class="payment-box">
+    <div>
+      <div class="method">Payment Mode: <strong>{{paymentMode}}</strong></div>
+      <div class="txn">Transaction / Reference ID: <strong>{{transactionId}}</strong></div>
+      <div class="txn">Collected by: {{collectedBy}}</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="paid-label">AMOUNT PAID</div>
+      <div class="amount-big">₹ {{formatINR totalAmount}}</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="note">
+      <p>1. This is a computer-generated receipt, valid without signature.</p>
+      <p>2. Please retain this receipt for future reference.</p>
+      <p>3. For discrepancies, contact Accounts Dept within 7 working days.</p>
+      <p style="margin-top:6px;">Generated: {{generatedAt}} | Institution ERP</p>
+    </div>
+    <div class="qr-area">
+      <img src="{{qrCode}}" alt="QR Code"/>
+      <p>Scan to verify</p>
+    </div>
+    <div class="signature">
+      <div class="sig-line"></div>
+      <p>Accounts Department</p>
+      <small>{{institutionName}}</small>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

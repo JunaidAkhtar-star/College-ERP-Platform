@@ -1,0 +1,64 @@
+<div class="eyebrow">Workspace provisioned</div>
+<div class="welcome-title">Your {{organizationName}} ERP workspace is ready</div>
+
+<p>Hello <strong>{{recipientName}}</strong>,</p>
+<p>
+  Your multi-campus education ERP workspace for <strong>{{organizationName}}</strong> has been
+  provisioned and configured on Devvelocity.
+</p>
+
+<div class="credential-card">
+  <div class="credential-row">
+    <span class="credential-label">Organization workspace</span>
+    <span class="credential-value">{{organizationName}} ({{tenantId}})</span>
+  </div>
+  <div class="credential-row">
+    <span class="credential-label">Administrator sign-in email</span>
+    <span class="credential-value">{{adminEmail}}</span>
+  </div>
+  <div class="credential-row">
+    <span class="credential-label">Temporary administrator password</span>
+    <span class="credential-value"><code>{{temporaryPassword}}</code></span>
+  </div>
+  <div class="credential-row">
+    <span class="credential-label">Subscription plan</span>
+    <span class="credential-value">{{planName}} · Valid until {{subscriptionExpiresAt}}</span>
+  </div>
+</div>
+
+<div class="security-note">
+  <strong>Security notice:</strong> This password is temporary and intended only for initial setup.
+  Sign in and change it immediately.
+</div>
+
+<p style="text-align: center">
+  <a href="{{loginUrl}}" class="btn-primary">Open admin dashboard</a>
+</p>
+
+<div class="eyebrow">Recommended onboarding sequence</div>
+<div class="steps">
+  <div class="step">
+    <span class="step-number">1</span>
+    <strong>Sign in and update the password.</strong> Replace the temporary password before
+    configuring the workspace.
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>
+    <strong>Configure campus and branding.</strong> Add the institution identity, address and email
+    sender settings.
+  </div>
+  <div class="step">
+    <span class="step-number">3</span>
+    <strong>Set up the academic structure.</strong> Create departments, courses and sessions before
+    inviting staff.
+  </div>
+</div>
+
+<p>
+  If the button does not open, copy this address into your browser:<br />
+  <a href="{{loginUrl}}">{{loginUrl}}</a>
+</p>
+
+{{#if supportEmail}}
+<p>For onboarding support, contact <a href="mailto:{{supportEmail}}">{{supportEmail}}</a>.</p>
+{{/if}}

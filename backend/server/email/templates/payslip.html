@@ -1,0 +1,71 @@
+<h2>Payslip — {{monthName}} {{year}}</h2>
+<p>Dear <strong>{{employeeName}}</strong>,</p>
+<p>
+  Your salary for <strong>{{monthName}} {{year}}</strong> has been processed. The breakdown is shown
+  below.
+</p>
+
+<table class="info-table">
+  <tr>
+    <td>Employee Name</td>
+    <td><strong>{{employeeName}}</strong></td>
+  </tr>
+  <tr>
+    <td>Designation</td>
+    <td>{{designation}}</td>
+  </tr>
+  <tr>
+    <td>Pay Period</td>
+    <td>{{monthName}} {{year}}</td>
+  </tr>
+  <tr>
+    <td>Payable Days</td>
+    <td>{{payableDays}}</td>
+  </tr>
+  <tr>
+    <td>Gross Pay</td>
+    <td><strong>₹ {{grossPay}}</strong></td>
+  </tr>
+  <tr>
+    <td>Total Deductions</td>
+    <td>₹ {{totalDeductions}}</td>
+  </tr>
+  <tr>
+    <td>Net Pay</td>
+    <td><strong>₹ {{netPay}}</strong></td>
+  </tr>
+  <tr>
+    <td>Payment Status</td>
+    <td>
+      {{#if isPaid}}
+      <span class="badge badge-success">PAID</span> on {{paymentDate}} {{else}}
+      <span class="badge badge-warning">PENDING</span>
+      {{/if}}
+    </td>
+  </tr>
+</table>
+
+<h3>Earnings &amp; Deductions</h3>
+<table class="info-table">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Type</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each components}}
+    <tr>
+      <td>{{this.component}}</td>
+      <td>{{this.type}}</td>
+      <td>₹ {{this.amount}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<p>
+  For any discrepancy please contact your Accounts &amp; HR Department within
+  <strong>7 working days</strong>.
+</p>

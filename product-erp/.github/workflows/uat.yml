@@ -1,0 +1,59 @@
+name: Authenticated ERP browser assurance
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: HTTPS URL of the tenant staging environment
+        required: true
+        type: string
+      tenant_slug:
+        description: Tenant slug used in ERP route paths
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: erp-uat-${{ inputs.base_url }}
+  cancel-in-progress: false
+
+jobs:
+  browser-assurance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: uat
+    env:
+      UAT_WEB_URL: ${{ inputs.base_url }}
+      UAT_TENANT_SLUG: ${{ inputs.tenant_slug }}
+      UAT_STORAGE_STATE: ${{ github.workspace }}/playwright/.auth/uat.json
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Restore encrypted UAT browser state
+        env:
+          UAT_STORAGE_STATE_BASE64: ${{ secrets.UAT_STORAGE_STATE_BASE64 }}
+        run: |
+          test -n "$UAT_STORAGE_STATE_BASE64"
+          mkdir -p playwright/.auth
+          printf '%s' "$UAT_STORAGE_STATE_BASE64" | base64 --decode > "$UAT_STORAGE_STATE"
+          chmod 600 "$UAT_STORAGE_STATE"
+      - run: pnpm test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: erp-browser-assurance
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+          retention-days: 14

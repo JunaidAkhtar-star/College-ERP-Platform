@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Fee Invoice / Demand Letter — {{institutionShortCode}}</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: Arial, sans-serif; font-size: 13px; color: #222; background: #fff; }
+  .page { width: 210mm; min-height: 297mm; padding: 12mm; }
+  .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-35deg);
+    font-size: 80px; font-weight: 900; color: rgba(26,35,126,0.05); white-space: nowrap; z-index: 0; pointer-events: none; }
+  .header { display: flex; align-items: flex-start; border-bottom: 3px solid #1a237e; padding-bottom: 12px; margin-bottom: 16px; }
+  .header .logo-area { flex: 1; }
+  .header .logo-area h1 { font-size: 22px; color: #1a237e; font-weight: 900; letter-spacing: 1px; }
+  .header .logo-area p { font-size: 10px; color: #555; margin-top: 2px; }
+  .header .doc-info { text-align: right; }
+  .header .doc-info h2 { font-size: 18px; font-weight: 800; color: #c62828; text-transform: uppercase; }
+  .header .doc-info .inv-no { font-size: 13px; color: #333; margin-top: 4px; }
+  .badge-due { display: inline-block; background: #fff8e1; color: #f57f17; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; border: 1px solid #ffe082; margin-top: 6px; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; margin-bottom: 18px; }
+  .info-cell { padding: 8px 12px; font-size: 12px; border-bottom: 1px solid #f0f0f0; }
+  .info-cell.label { color: #666; font-weight: 500; background: #fafafa; border-right: 1px solid #f0f0f0; }
+  .info-cell.value { color: #222; font-weight: 600; }
+  .section-title { font-size: 13px; font-weight: 700; color: #1a237e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; border-left: 3px solid #1a237e; padding-left: 8px; }
+  .fee-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  .fee-table thead tr { background: #1a237e; color: white; }
+  .fee-table thead th { padding: 9px 12px; text-align: left; font-size: 12px; font-weight: 600; }
+  .fee-table thead th:nth-child(3), .fee-table thead th:nth-child(4), .fee-table thead th:last-child { text-align: right; }
+  .fee-table tbody tr:nth-child(even) { background: #f8f9ff; }
+  .fee-table tbody td { padding: 8px 12px; font-size: 12px; border-bottom: 1px solid #eee; }
+  .fee-table tbody td:nth-child(3), .fee-table tbody td:nth-child(4), .fee-table tbody td:last-child { text-align: right; }
+  .fee-table .sub-total { background: #e8eaf6; font-weight: 600; }
+  .summary-box { width: 50%; margin-left: auto; margin-bottom: 16px; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; }
+  .summary-box table { width: 100%; border-collapse: collapse; }
+  .summary-box td { padding: 8px 12px; font-size: 12px; border-bottom: 1px solid #eee; }
+  .summary-box td:first-child { color: #555; }
+  .summary-box td:last-child { text-align: right; font-weight: 600; }
+  .summary-box .total-row td { background: #1a237e; color: white; font-weight: 800; font-size: 14px; border: none; }
+  .due-alert { background: #ffebee; border: 1px solid #ef9a9a; border-radius: 6px; padding: 10px 14px; margin-bottom: 16px; }
+  .due-alert p { color: #c62828; font-size: 12px; font-weight: 500; }
+  .payment-methods { background: #f3f4f8; border-radius: 6px; padding: 12px 16px; margin-bottom: 16px; }
+  .payment-methods h4 { font-size: 12px; color: #1a237e; margin-bottom: 8px; }
+  .payment-methods p { font-size: 11px; color: #555; line-height: 1.8; }
+  .footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 20px; padding-top: 14px; border-top: 2px dashed #ccc; }
+  .footer .note { font-size: 10px; color: #888; max-width: 60%; line-height: 1.6; }
+  .footer .signature { text-align: center; }
+  .footer .signature .sig-line { width: 140px; border-top: 1px solid #555; margin: 0 auto 4px; }
+  .footer .signature p { font-size: 11px; color: #444; font-weight: 600; }
+  .qr-area { text-align: center; }
+  .qr-area img { width: 65px; height: 65px; }
+  .qr-area p { font-size: 9px; color: #999; margin-top: 2px; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<div class="watermark">{{upper institutionShortCode}}</div>
+<div class="page">
+
+  <div class="header">
+    <div class="logo-area">
+      <h1>{{institutionShortCode}}</h1>
+      <p>{{institutionName}}</p>
+      <p style="font-size:9px; color:#888;">NH-5, Bhubaneswar–Cuttack Road, Bhubaneswar, Odisha — 752101 | AICTE Approved | BPUT Affiliated</p>
+    </div>
+    <div class="doc-info">
+      <h2>Fee Invoice</h2>
+      <div class="inv-no">Invoice No: <strong>{{invoiceNumber}}</strong></div>
+      <div class="inv-no">Issue Date: <strong>{{formatDate issuedDate}}</strong></div>
+      <div class="badge-due">⚠ DUE BY: {{dueDate}}</div>
+    </div>
+  </div>
+
+  <p class="section-title">Student Details</p>
+  <div class="info-grid">
+    <div class="info-cell label">Student Name</div><div class="info-cell value">{{upper studentName}}</div>
+    <div class="info-cell label">Father's Name</div><div class="info-cell value">{{upper fatherName}}</div>
+    <div class="info-cell label">Roll Number</div><div class="info-cell value">{{rollNumber}}</div>
+    <div class="info-cell label">Programme</div><div class="info-cell value">{{program}} — {{branch}}</div>
+    <div class="info-cell label">Semester</div><div class="info-cell value">Semester {{semester}}</div>
+    <div class="info-cell label">Academic Year</div><div class="info-cell value">{{academicYear}}</div>
+  </div>
+
+  <p class="section-title">Fee Details</p>
+  <table class="fee-table">
+    <thead><tr><th>#</th><th>Fee Component</th><th>Amount (₹)</th><th>Concession (₹)</th><th>Net Amount (₹)</th></tr></thead>
+    <tbody>
+      {{#each feeItems}}
+      <tr>
+        <td>{{add @index 1}}</td>
+        <td>{{this.description}}</td>
+        <td>{{formatINR this.amount}}</td>
+        <td>{{formatINR (or this.concession 0)}}</td>
+        <td>{{formatINR (subtract this.amount (or this.concession 0))}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <div class="summary-box">
+    <table>
+      <tr><td>Gross Fee</td><td>₹ {{formatINR totalDue}}</td></tr>
+      {{#if scholarshipDeduction}}<tr><td>Scholarship Deduction</td><td style="color:#2e7d32;">— ₹ {{formatINR scholarshipDeduction}}</td></tr>{{/if}}
+      {{#if paidAmount}}<tr><td>Amount Already Paid</td><td style="color:#1565c0;">— ₹ {{formatINR paidAmount}}</td></tr>{{/if}}
+      <tr class="total-row"><td>BALANCE DUE</td><td>₹ {{formatINR balanceDue}}</td></tr>
+    </table>
+  </div>
+
+  <div class="due-alert">
+    <p>⚠ Please pay the balance amount of <strong>₹ {{formatINR balanceDue}}</strong> on or before <strong>{{dueDate}}</strong>. Late payment will attract a penalty of ₹ 50/day after the due date.</p>
+  </div>
+
+  <div class="payment-methods">
+    <h4>Payment Methods:</h4>
+    <p>
+      Pay through the payment methods configured in your institution portal. Mention the roll number in payment remarks.
+    </p>
+  </div>
+
+  <div class="footer">
+    <div class="note">
+      <p>1. This is a computer-generated document.</p>
+      <p>2. Fee once paid is non-refundable as per institute policy.</p>
+      <p>3. Contact: {{institutionEmail}} | Generated: {{generatedAt}}</p>
+    </div>
+    <div class="qr-area">
+      <img src="{{qrCode}}" alt="QR"/>
+      <p>Scan to pay / verify</p>
+    </div>
+    <div class="signature">
+      <div class="sig-line"></div>
+      <p>Accounts Department</p>
+      <small>{{institutionName}}</small>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

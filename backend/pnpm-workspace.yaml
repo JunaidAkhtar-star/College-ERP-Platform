@@ -1,0 +1,20 @@
+allowBuilds:
+  '@firebase/util': true
+  '@google/genai': true
+  '@scarf/scarf': true
+  protobufjs: true
+minimumReleaseAgeExclude:
+  - brace-expansion@1.1.16 || 1.1.17 || 1.1.18 || 5.0.7 || 5.0.8 || 5.0.9
+  - qs@6.15.4 || 6.16.0
+overrides:
+  '@opentelemetry/core@<2.8.0': 2.8.0
+  'body-parser@<1.20.6': 1.20.6
+  'form-data@<2.5.6': 2.5.6
+  'ip-address@<10.3.1': 10.3.1
+  'protobufjs@<7.6.5': 7.6.5
+  'qs@<6.16.0': 6.16.0
+  'socket.io-parser@<4.2.7': 4.2.7
+  'undici@>=7.0.0 <7.29.0': 7.29.0
+  'uuid@<11.1.1': 11.1.1
+  'websocket-driver@<0.7.5': 0.7.5
+  'ws@>=8.0.0 <8.21.0': 8.21.0

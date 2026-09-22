@@ -1,0 +1,74 @@
+<span class="eyebrow">Examinations</span>
+<h2>Semester {{semester}} result published</h2>
+<p>Dear <strong>{{studentName}}</strong>,</p>
+<p>
+  Your result for the <strong>{{semester}} Semester End Examination — {{academicYear}}</strong> has
+  been published. A detailed marksheet is attached to this email.
+</p>
+
+<table class="info-table">
+  <tr>
+    <td>Student Name</td>
+    <td><strong>{{studentName}}</strong></td>
+  </tr>
+  <tr>
+    <td>Roll Number</td>
+    <td>{{rollNumber}}</td>
+  </tr>
+  <tr>
+    <td>Semester</td>
+    <td>{{semester}}</td>
+  </tr>
+  <tr>
+    <td>SGPA</td>
+    <td><strong>{{sgpa}} / 10.0</strong></td>
+  </tr>
+  <tr>
+    <td>CGPA</td>
+    <td><strong>{{cgpa}} / 10.0</strong></td>
+  </tr>
+  <tr>
+    <td>Credits Earned</td>
+    <td>{{creditsEarned}} / {{totalCredits}}</td>
+  </tr>
+  <tr>
+    <td>Back Papers</td>
+    <td>
+      {{#if backlogs}}<span class="badge badge-danger">{{backlogs}} Subject(s)</span>{{else}}<span
+        class="badge badge-success"
+        >CLEAR</span
+      >{{/if}}
+    </td>
+  </tr>
+  <tr>
+    <td>Result Status</td>
+    <td>
+      {{#if passed}}<span class="badge badge-success">PASSED</span>{{else}}<span
+        class="badge badge-danger"
+        >FAILED</span
+      >{{/if}}
+    </td>
+  </tr>
+</table>
+
+{{#if backlogs}}
+<div class="alert-box">
+  <p>
+    You have back papers in <strong>{{backSubjects}}</strong>. Supplementary exam details will be
+    communicated separately. Contact your academic mentor immediately.
+  </p>
+</div>
+{{/if}}
+
+<div class="highlight-box">
+  <p>
+    A detailed marksheet with subject-wise scores is attached to this email. The official marksheet
+    will be issued separately.
+  </p>
+</div>
+
+<p>
+  For result-related queries or discrepancies, apply for re-evaluation within
+  <strong>15 days</strong> at the Examination Cell.
+</p>
+<p>Please contact your institution's Examination Cell if any result details appear incorrect.</p>

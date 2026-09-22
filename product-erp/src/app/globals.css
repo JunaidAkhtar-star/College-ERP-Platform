@@ -1,0 +1,313 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary-color: #0178d7;
+  --secondary-color: #9bb94f;
+  --tenant-auth-background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--primary-color) 88%, #061629),
+    color-mix(in srgb, var(--primary-color) 58%, #061629)
+  );
+  --tenant-sidebar-background: linear-gradient(
+    175deg,
+    color-mix(in srgb, var(--primary-color) 68%, #071422),
+    color-mix(in srgb, var(--primary-color) 34%, #06111e)
+  );
+}
+
+.tenant-brand-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Font */
+  --font-sans: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Primary: #0178D7 */
+  --color-primary-50: #e6f2fb;
+  --color-primary-100: #cce4f7;
+  --color-primary-200: #99c9ef;
+  --color-primary-300: #66aee7;
+  --color-primary-400: #3393df;
+  --color-primary-500: var(--primary-color);
+  --color-primary-600: #015eac;
+  --color-primary-700: #014b89;
+  --color-primary-800: #013866;
+  --color-primary-900: #002544;
+  --color-primary: var(--primary-color);
+
+  /* Secondary: #9BB94F */
+  --color-secondary-50: #f5f8ec;
+  --color-secondary-100: #ebf2d9;
+  --color-secondary-200: #d7e4b3;
+  --color-secondary-300: #c3d78d;
+  --color-secondary-400: #afca67;
+  --color-secondary-500: var(--secondary-color);
+  --color-secondary-600: #7c9440;
+  --color-secondary-700: #5d6f30;
+  --color-secondary-800: #3e4a20;
+  --color-secondary-900: #1f2510;
+  --color-secondary: var(--secondary-color);
+
+  /* Tertiary: #B0B0B0 */
+  --color-tertiary-50: #f7f7f7;
+  --color-tertiary-100: #efefef;
+  --color-tertiary-200: #dfdfdf;
+  --color-tertiary-300: #cfcfcf;
+  --color-tertiary-400: #bfbfbf;
+  --color-tertiary-500: #b0b0b0;
+  --color-tertiary-600: #8d8d8d;
+  --color-tertiary-700: #6a6a6a;
+  --color-tertiary-800: #474747;
+  --color-tertiary-900: #242424;
+  --color-tertiary: #b0b0b0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    'Work Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+
+.erp-assistant-font {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Text', 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  letter-spacing: -0.008em;
+}
+
+.erp-assistant-font :is(h1, h2, h3, strong) {
+  letter-spacing: -0.015em;
+}
+
+.tenant-page-canvas {
+  background:
+    radial-gradient(
+      circle at 8% 0%,
+      color-mix(in srgb, var(--primary-color) 5%, transparent),
+      transparent 24rem
+    ),
+    linear-gradient(180deg, #f8fafc 0%, #f5f7fb 45%, #f8fafc 100%);
+}
+
+.tenant-workspace :is(section, article, div).rounded-xl.bg-white,
+.tenant-workspace :is(section, article, div).rounded-2xl.bg-white,
+.tenant-workspace :is(section, article, div).rounded-3xl.bg-white,
+.tenant-workspace button,
+.tenant-workspace a {
+  transition-property: color, background-color, border-color, transform, opacity;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Every semantic interactive control inside role dashboards advertises that it
+   is clickable. Keep disabled controls visually distinct. */
+.role-dashboard
+  :is(
+    a[href],
+    button:not(:disabled),
+    [role='button']:not([aria-disabled='true']),
+    summary,
+    label[for],
+    select:not(:disabled),
+    input[type='checkbox']:not(:disabled),
+    input[type='radio']:not(:disabled)
+  ),
+.tenant-workspace
+  :is(
+    a[href],
+    button:not(:disabled),
+    [role='button']:not([aria-disabled='true']),
+    summary,
+    label[for],
+    select:not(:disabled),
+    input[type='checkbox']:not(:disabled),
+    input[type='radio']:not(:disabled)
+  ) {
+  cursor: pointer;
+}
+
+.role-dashboard
+  :is(
+    button:disabled,
+    [role='button'][aria-disabled='true'],
+    select:disabled,
+    input[type='checkbox']:disabled,
+    input[type='radio']:disabled
+  ),
+.tenant-workspace
+  :is(
+    button:disabled,
+    [role='button'][aria-disabled='true'],
+    select:disabled,
+    input[type='checkbox']:disabled,
+    input[type='radio']:disabled
+  ) {
+  cursor: not-allowed;
+}
+
+/* Faculty command center keeps operational data comfortably readable on every
+   viewport instead of inheriting the compact table-scale labels used elsewhere. */
+.faculty-command-center h2 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
+.faculty-command-center h3 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.faculty-command-center .text-\[8px\] {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+}
+
+.faculty-command-center .text-\[9px\] {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.faculty-command-center .text-\[10px\] {
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+}
+
+.faculty-command-center .text-\[11px\] {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@media (max-width: 639px) {
+  .faculty-command-center section {
+    border-radius: 1rem;
+  }
+
+  .faculty-command-center .recharts-text {
+    font-size: 0.6875rem;
+  }
+}
+
+.tenant-workspace input,
+.tenant-workspace select,
+.tenant-workspace textarea {
+  border-color: rgb(203 213 225 / 0.88);
+}
+
+.tenant-workspace input:focus-visible,
+.tenant-workspace select:focus-visible,
+.tenant-workspace textarea:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  outline-offset: 1px;
+  border-color: color-mix(in srgb, var(--primary-color) 55%, white);
+}
+
+/* Attendance follows the feature's flat, borderless panel language. */
+.tenant-workspace .attendance-page *,
+.tenant-workspace .attendance-page *::before,
+.tenant-workspace .attendance-page *::after {
+  box-shadow: none !important;
+}
+
+.tenant-workspace .attendance-page :is(section, article, div).rounded-xl.bg-white,
+.tenant-workspace .attendance-page :is(section, article, div).rounded-2xl.bg-white,
+.tenant-workspace .attendance-page :is(section, article, div).rounded-3xl.bg-white {
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tenant-workspace *,
+  .tenant-workspace *::before,
+  .tenant-workspace *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.tenant-auth-brand {
+  background: var(--tenant-auth-background);
+}
+.tenant-sidebar {
+  background: var(--tenant-sidebar-background);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.shake-input {
+  animation: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.light-grid-overlay {
+  background-image: radial-gradient(rgba(1, 120, 215, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Keep the application canvas stationary while any full-screen dialog,
+   drawer, viewer, or confirmation overlay is mounted. Modal content keeps
+   its own overflow-y-auto scrolling. */
+html {
+  scrollbar-gutter: stable;
+}
+
+html:has(body .fixed.inset-0),
+body:has(.fixed.inset-0) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 10mm;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print-sheet,
+  .print-sheet * {
+    visibility: visible;
+  }
+
+  .print-sheet {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+  }
+}

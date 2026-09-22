@@ -1,0 +1,38 @@
+name: Backend quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run check
+        env:
+          MONGODB_URI: mongodb://127.0.0.1:27017
+          JWT_SECRET: ci-only-jwt-secret-ci-only-jwt-secret-ci-only-jwt-secret
+          JWT_REFRESH_SECRET: ci-only-refresh-secret-ci-only-refresh-secret-ci-only
+      - run: pnpm test
+        env:
+          MONGODB_URI: mongodb://127.0.0.1:27017
+          JWT_SECRET: ci-only-jwt-secret-ci-only-jwt-secret-ci-only-jwt-secret
+          JWT_REFRESH_SECRET: ci-only-refresh-secret-ci-only-refresh-secret-ci-only

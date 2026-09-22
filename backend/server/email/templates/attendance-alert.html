@@ -1,0 +1,79 @@
+<h2>Attendance Alert — Action Required</h2>
+<p>Dear <strong>{{studentName}}</strong> / Parent of <strong>{{studentName}}</strong>,</p>
+<p>
+  This is an official notice from your institution's Academic Department regarding attendance for
+  the current semester.
+</p>
+
+<table class="info-table">
+  <tr>
+    <td>Student Name</td>
+    <td><strong>{{studentName}}</strong></td>
+  </tr>
+  <tr>
+    <td>Roll Number</td>
+    <td>{{rollNumber}}</td>
+  </tr>
+  <tr>
+    <td>Programme</td>
+    <td>{{program}} — {{branch}}</td>
+  </tr>
+  <tr>
+    <td>Semester</td>
+    <td>{{semester}}</td>
+  </tr>
+  <tr>
+    <td>Overall Attendance</td>
+    <td><strong>{{overallAttendance}}%</strong></td>
+  </tr>
+  <tr>
+    <td>Minimum Required</td>
+    <td>75%</td>
+  </tr>
+  <tr>
+    <td>Shortfall</td>
+    <td><span class="badge badge-danger">{{shortfall}}%</span></td>
+  </tr>
+</table>
+
+<div class="alert-box">
+  <p>
+    <strong>Action required:</strong> Your attendance has fallen below the minimum required
+    threshold of <strong>75%</strong>. Students below the threshold may not be permitted to appear
+    in semester-end examinations under the applicable regulations.
+  </p>
+</div>
+
+<p><strong>Subject-wise breakdown:</strong></p>
+<table class="info-table">
+  <tr>
+    <td><strong>Subject</strong></td>
+    <td><strong>Attendance %</strong></td>
+    <td><strong>Status</strong></td>
+  </tr>
+  {{#each subjects}}
+  <tr>
+    <td>{{this.name}}</td>
+    <td>{{this.percentage}}%</td>
+    <td>
+      {{#if this.shortage}}<span class="badge badge-danger">SHORT</span>{{else}}<span
+        class="badge badge-success"
+        >OK</span
+      >{{/if}}
+    </td>
+  </tr>
+  {{/each}}
+</table>
+
+<p>
+  You are required to meet your
+  <strong>Class Teacher / Academic Mentor ({{mentorName}})</strong> immediately for counseling and
+  to take corrective action.
+</p>
+
+<div class="highlight-box">
+  <p>
+    Regular attendance is mandatory under institution rules and applicable regulations. Please
+    attend all classes going forward.
+  </p>
+</div>

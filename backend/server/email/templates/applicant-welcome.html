@@ -1,0 +1,67 @@
+<span class="eyebrow">Account setup</span>
+<h2>Welcome to the admission portal</h2>
+<p>Dear <strong>{{name}}</strong>,</p>
+<p>
+  Your admission application account has been successfully created for the academic session
+  <strong>{{academicYear}}</strong>.
+</p>
+<p>
+  You can now complete your application form, upload documents, and track your admission status
+  through the institution's admission portal.
+</p>
+
+<table class="info-table">
+  <tr>
+    <td>Candidate Name</td>
+    <td><strong>{{name}}</strong></td>
+  </tr>
+  <tr>
+    <td>Temporary Student ID / Application No</td>
+    <td><strong>{{userId}}</strong></td>
+  </tr>
+  <tr>
+    <td>Admission Type</td>
+    <td><span style="text-transform: capitalize">{{admissionType}}</span></td>
+  </tr>
+  <tr>
+    <td>Program Preference</td>
+    <td>{{programPreference}}</td>
+  </tr>
+  <tr>
+    <td>Portal Login Email</td>
+    <td>{{email}}</td>
+  </tr>
+  <tr>
+    <td>Temporary Password</td>
+    <td><strong>{{tempPassword}}</strong></td>
+  </tr>
+</table>
+
+<div class="highlight-box">
+  <p>You will be required to change the temporary password when you first sign in.</p>
+</div>
+
+<p class="action-row">
+  <a href="{{loginUrl}}" class="btn-primary">Access Admission Portal</a>
+</p>
+
+<div class="section-title">Complete your application</div>
+<div class="steps">
+  <div class="step">
+    <span class="step-number">1</span>Sign in using the email and temporary password above.
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>Complete every required application section.
+  </div>
+  <div class="step">
+    <span class="step-number">3</span>Upload the required supporting documents.
+  </div>
+  <div class="step"><span class="step-number">4</span>Review and submit the application.</div>
+</div>
+
+<div class="alert-box">
+  <p>
+    If you did not initiate this registration, notify the institution's Admissions Office
+    immediately.
+  </p>
+</div>

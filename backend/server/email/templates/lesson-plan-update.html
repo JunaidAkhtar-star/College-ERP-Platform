@@ -1,0 +1,19 @@
+<h2>Lesson Plan Update</h2>
+<p>Dear <strong>{{recipientName}}</strong>,</p>
+
+<p>There is an update on a lesson plan in your queue.</p>
+
+<div class="highlight-box">
+  <p><strong>{{title}}</strong></p>
+  <p style="margin-top: 8px">{{body}}</p>
+</div>
+
+{{#if actionUrl}}
+<p style="text-align: center">
+  <a href="{{actionUrl}}" class="btn-primary">Open Lesson Plan</a>
+</p>
+{{/if}}
+
+<p>Please address any pending changes at the earliest to keep the academic schedule on track.</p>
+
+<p>Academic Coordination</p>

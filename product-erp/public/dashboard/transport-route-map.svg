@@ -1,0 +1,22 @@
+<svg width="1000" height="500" viewBox="0 0 1000 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Transportation route map background</title>
+  <rect width="1000" height="500" rx="24" fill="#F6F8FC"/>
+  <g stroke="#E3E8F1" stroke-width="9" stroke-linecap="round">
+    <path d="M-20 91C128 103 174 27 304 49c127 22 146 127 267 128 131 2 209-94 449-51"/>
+    <path d="M36 534c71-147 193-167 293-140 111 29 191 15 243-70 65-106 159-115 455-66"/>
+    <path d="M137-20c0 121 54 194 151 236 111 48 122 135 87 304"/>
+    <path d="M789-20c-82 108-79 198 14 266 70 50 94 128 68 274"/>
+  </g>
+  <g stroke="#FFFFFF" stroke-width="3" opacity=".9">
+    <path d="M-20 91C128 103 174 27 304 49c127 22 146 127 267 128 131 2 209-94 449-51"/>
+    <path d="M36 534c71-147 193-167 293-140 111 29 191 15 243-70 65-106 159-115 455-66"/>
+    <path d="M137-20c0 121 54 194 151 236 111 48 122 135 87 304"/>
+    <path d="M789-20c-82 108-79 198 14 266 70 50 94 128 68 274"/>
+  </g>
+  <g fill="#DDEEDC" opacity=".8">
+    <path d="m466 39 96 13-8 74-98-8 10-79Z"/><path d="m624 347 122 18-16 93-131-22 25-89Z"/><path d="m46 274 126-17 10 85-139 14 3-82Z"/>
+  </g>
+  <g fill="#CBD5E1" font-family="Arial, sans-serif" font-size="18">
+    <text x="73" y="239">Campus Road</text><text x="655" y="223">Central Avenue</text><text x="421" y="458">City Link</text>
+  </g>
+</svg>

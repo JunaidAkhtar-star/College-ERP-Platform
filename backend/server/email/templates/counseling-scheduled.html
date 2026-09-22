@@ -1,0 +1,22 @@
+<h2>Counseling Session Scheduled</h2>
+<p>Dear <strong>{{recipientName}}</strong>,</p>
+
+<p>A counseling session has been scheduled with you.</p>
+
+<div class="highlight-box">
+  <p><strong>{{title}}</strong></p>
+  <p style="margin-top: 8px">{{body}}</p>
+</div>
+
+{{#if actionUrl}}
+<p style="text-align: center">
+  <a href="{{actionUrl}}" class="btn-primary">View Session Details</a>
+</p>
+{{/if}}
+
+<p>
+  Please be on time. If you are unable to attend, request a reschedule from the portal at least 24
+  hours in advance.
+</p>
+
+<p>Student Counseling Cell</p>

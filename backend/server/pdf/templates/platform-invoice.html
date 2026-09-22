@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: #111827;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10px;
+      }
+      .invoice {
+        min-height: 267mm;
+        border-top: 5px solid #0178d7;
+        padding: 18px 20px 12px;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        padding-bottom: 13px;
+        border-bottom: 1.5px solid #263746;
+      }
+      .brand-logo {
+        display: block;
+        width: 190px;
+        max-height: 54px;
+        object-fit: contain;
+        object-position: left center;
+      }
+      .brand-name {
+        color: #123f60;
+        font-size: 23px;
+        font-weight: 800;
+      }
+      .seller {
+        margin-top: 7px;
+        max-width: 350px;
+        color: #344054;
+        font-size: 9px;
+        line-height: 1.55;
+      }
+      .title-block {
+        min-width: 220px;
+        text-align: right;
+      }
+      .title {
+        color: #123f60;
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+      }
+      .status {
+        display: inline-block;
+        margin-top: 8px;
+        border: 1px solid #9dd9be;
+        border-radius: 4px;
+        background: #edf9f3;
+        color: #087443;
+        padding: 4px 9px;
+        font-size: 9px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      .details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 16px;
+      }
+      .section-heading {
+        margin-bottom: 7px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #9aa6b2;
+        color: #123f60;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .detail-line {
+        margin: 4px 0;
+        color: #344054;
+        line-height: 1.45;
+      }
+      .detail-line strong {
+        color: #111827;
+      }
+      table {
+        width: 100%;
+        margin-top: 18px;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #687785;
+        padding: 8px 7px;
+        vertical-align: top;
+      }
+      th {
+        background: #eef3f6;
+        color: #172b3a;
+        font-size: 8px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+      }
+      .center {
+        text-align: center;
+      }
+      .right {
+        text-align: right;
+      }
+      .item-title {
+        color: #123f60;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .item-note {
+        margin-top: 3px;
+        color: #667085;
+        font-size: 8px;
+        line-height: 1.4;
+      }
+      .totals-wrap {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 12px;
+      }
+      .totals {
+        width: 43%;
+        border: 1px solid #687785;
+      }
+      .total-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 7px 9px;
+        border-bottom: 1px solid #c5cdd4;
+      }
+      .total-row:last-child {
+        border-bottom: 0;
+      }
+      .grand-total {
+        background: #123f60;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .words {
+        margin-top: 12px;
+        border: 1px solid #687785;
+        padding: 8px 9px;
+        color: #344054;
+      }
+      .words strong {
+        color: #111827;
+      }
+      .terms {
+        margin-top: 12px;
+        border: 1px solid #9aa6b2;
+        padding: 9px 10px;
+        color: #475467;
+        line-height: 1.55;
+      }
+      .terms-title {
+        color: #111827;
+        font-weight: 800;
+      }
+      .verification {
+        margin-top: 10px;
+        border-left: 3px solid #0178d7;
+        background: #f3f8fb;
+        padding: 8px 10px;
+        color: #475467;
+        line-height: 1.5;
+      }
+      .signatures {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 90px;
+        margin-top: 38px;
+      }
+      .signature-block {
+        min-height: 82px;
+      }
+      .signature-line {
+        width: 180px;
+        border-top: 1px solid #344054;
+        padding-top: 6px;
+      }
+      .authorized {
+        text-align: right;
+      }
+      .authorized .signature-line {
+        margin-left: auto;
+      }
+      .for-company {
+        margin-bottom: 12px;
+        color: #344054;
+        font-weight: 700;
+      }
+      .signature-name {
+        margin-bottom: 5px;
+        color: #123f60;
+        font-family: "Brush Script MT", "Segoe Script", cursive;
+        font-size: 18px;
+        font-style: italic;
+        font-weight: 700;
+      }
+      footer {
+        margin-top: 18px;
+        padding-top: 9px;
+        border-top: 1px solid #9aa6b2;
+        color: #667085;
+        text-align: center;
+        font-size: 8px;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="invoice">
+      <header class="header">
+        <div>
+          {{#if platformLogoDataUri}}
+          <img class="brand-logo" src="{{platformLogoDataUri}}" alt="{{institutionName}}" />
+          {{else}}
+          <div class="brand-name">{{institutionName}}</div>
+          {{/if}} {{#if hasCouponDiscount}}
+          <div class="total-row">
+            <span>Coupon ({{couponCode}})</span><strong>− ₹{{formatINR couponDiscount}}</strong>
+          </div>
+          {{/if}}
+          <div class="seller">
+            <strong>{{sellerLegalName}}</strong><br />
+            {{issuerAddress}}<br />
+            {{issuerEmail}}{{#if issuerPhone}} · {{issuerPhone}}{{/if}} {{#if sellerGstin}}<br />GSTIN:
+            {{sellerGstin}}{{/if}} {{#if sellerState}} · State: {{sellerState}}{{/if}}
+          </div>
+        </div>
+        <div class="title-block">
+          <div class="title">{{documentTitle}}</div>
+          <div class="status">Invoice no. <strong>{{invoiceNumber}}</strong></div>
+        </div>
+      </header>
+
+      <section class="details">
+        <div>
+          <div class="section-heading">Bill to</div>
+          <div class="detail-line"><strong>{{tenantName}}</strong></div>
+          <div class="detail-line">Billing email: {{billingEmail}}</div>
+        </div>
+        <div>
+          <div class="section-heading">Invoice details</div>
+          <div class="detail-line"><strong>Invoice number:</strong> {{invoiceNumber}}</div>
+          <div class="detail-line"><strong>Invoice date:</strong> {{formatDate issuedAt}}</div>
+          <div class="detail-line"><strong>Payment mode:</strong> {{paymentMethodLabel}}</div>
+          <div class="detail-line"><strong>Transaction reference:</strong> {{paymentId}}</div>
+          <div class="detail-line"><strong>Processed:</strong> {{transactionTime}}</div>
+        </div>
+      </section>
+
+      <table>
+        <thead>
+          <tr>
+            <th class="center" style="width: 5%">#</th>
+            <th>Description</th>
+            <th style="width: 18%">Billing term</th>
+            <th class="center" style="width: 8%">Qty</th>
+            <th class="right" style="width: 15%">Rate</th>
+            <th class="right" style="width: 17%">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each lineItems}}
+          <tr>
+            <td class="center">{{number}}</td>
+            <td>
+              <div class="item-title">{{description}}</div>
+              <div class="item-note">Devvelocity subscription entitlement.</div>
+            </td>
+            <td>{{billingLabel}}</td>
+            <td class="center">1</td>
+            <td class="right">₹{{formatINR amount}}</td>
+            <td class="right">₹{{formatINR amount}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <div class="totals-wrap">
+        <section class="totals">
+          <div class="total-row">
+            <span>Subscription list price</span><strong>₹{{formatINR listPrice}}</strong>
+          </div>
+          {{#if hasDiscount}}
+          <div class="total-row">
+            <span>Annual discount</span><strong>− ₹{{formatINR discount}}</strong>
+          </div>
+          {{/if}}
+          {{#if hasCouponDiscount}}
+          <div class="total-row">
+            <span>Coupon discount ({{couponCode}})</span
+            ><strong>− ₹{{formatINR couponDiscount}}</strong>
+          </div>
+          {{/if}}
+          <div class="total-row">
+            <span>Taxable value</span><strong>₹{{formatINR subtotal}}</strong>
+          </div>
+          <div class="total-row">
+            <span>GST ({{taxRatePercent}}%)</span><strong>₹{{formatINR taxAmount}}</strong>
+          </div>
+          <div class="total-row grand-total">
+            <span>{{amountLabel}}</span><span>₹{{formatINR amount}}</span>
+          </div>
+        </section>
+      </div>
+
+      <div class="words"><strong>Amount in words:</strong> {{amountInWords amount}}</div>
+
+      <section class="terms">
+        <div class="terms-title">Terms &amp; conditions</div>
+        <div>
+          1. This invoice records the subscription payment received against the invoice number
+          above.
+        </div>
+        <div>2. Subscription access is governed by the accepted Devvelocity terms of service.</div>
+        <div>3. For billing assistance, contact {{issuerEmail}} and quote the invoice number.</div>
+      </section>
+
+      <section class="verification">
+        <strong>Payment verification:</strong> This document was generated after authorized review
+        of the payment method, transaction reference, amount and supporting payment proof. {{#if
+        detail}} {{detail}}{{/if}}
+      </section>
+
+      <section class="signatures">
+        <div class="signature-block">
+          <div class="signature-line">Customer acknowledgement</div>
+        </div>
+        <div class="signature-block authorized">
+          <div class="for-company">For {{sellerLegalName}}</div>
+          <div class="signature-name">{{authorizedSignatoryName}}</div>
+          <div class="signature-line">Authorized Signatory</div>
+        </div>
+      </section>
+
+      <footer>
+        Thank you for your business.<br />
+        This is an electronically generated invoice. Payment verification is recorded in the
+        Devvelocity billing audit trail.
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<h2>{{title}}</h2>
+<p>Dear <strong>{{recipientName}}</strong>,</p>
+
+<div class="highlight-box">
+  <p>{{body}}</p>
+</div>
+
+{{#if actionUrl}}
+<p style="text-align: center">
+  <a href="{{actionUrl}}" class="btn-primary">Open notification</a>
+</p>
+{{/if}}
+
+<p>
+  You are receiving this email because you opted in to institution notifications. To change your
+  preferences, visit <em>Settings → Notifications</em> in your portal.
+</p>
